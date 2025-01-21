@@ -1,7 +1,4 @@
-from django.http import JsonResponse
 from django.shortcuts import redirect, render
-from django.views.decorators.csrf import csrf_exempt
-import json
 from .models import Product
 
 
