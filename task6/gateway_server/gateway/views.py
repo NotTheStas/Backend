@@ -1,9 +1,10 @@
 import requests
 from django.http import JsonResponse
+from django.conf import settings
 
 
 def redirect_mainapp(request):
-
-    response = requests.get("http://127.0.0.1:8000")
+    main_server_url = settings.URL_TO_MAIN_SERVER
+    response = requests.get(main_server_url)
     response_data = response.json()
     return JsonResponse(response_data)
