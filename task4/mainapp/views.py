@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
+from .models import CustomUser
 
 def register_user(request):
     if request.method == "POST":
@@ -15,10 +15,10 @@ def register_user(request):
         if password != confirm_password:
             return redirect('register')
 
-        if User.objects.filter(username=username).exists():
+        if CustomUser.objects.filter(username=username).exists():
             return redirect('register')
 
-        User.objects.create_user(username=username, password=password)
+        CustomUser.objects.create_user(username=username, password=password)
         return redirect('login')
 
     return render(request, 'mainapp/register.html')
@@ -32,6 +32,7 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
+            print("Пользователь зашёл в аккаунт")
             return redirect('register')
         else:
             return redirect('login')
@@ -40,4 +41,5 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
+    print("Пользователь вышел из аккаунта")
     return redirect('login')
