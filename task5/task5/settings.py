@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
-    '',
+    'https://backend-production-fb84.up.railway.app',
 ]
 
 
